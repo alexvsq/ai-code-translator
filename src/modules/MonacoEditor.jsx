@@ -1,12 +1,8 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Editor } from '@monaco-editor/react'
-import Monokai from 'monaco-themes/themes/Monokai.json'
-import Dracula from 'monaco-themes/themes/Dracula.json'
-import TomorrowNightBlue from 'monaco-themes/themes/Tomorrow-Night-Blue.json'
-import TomorrowNight from 'monaco-themes/themes/Tomorrow-Night.json'
-import NightOwl from 'monaco-themes/themes/Night Owl.json'
 import { useTranslatorAi } from '@/context/context'
+import THEMES from '@/utils/THEMES'
 
 export default function MonacoEditor({ theme }) {
 
@@ -34,11 +30,12 @@ export default function MonacoEditor({ theme }) {
                 'editor.background': '#00000000'
             }
         });
-        monaco.editor.defineTheme('nightOwl', NightOwl);
-        monaco.editor.defineTheme('tomorrowNightBlue', TomorrowNightBlue);
-        monaco.editor.defineTheme('dracula', Dracula);
-        monaco.editor.defineTheme('tomorrowNight', TomorrowNight);
-        monaco.editor.defineTheme('monokai', Monokai);
+        THEMES.forEach(theme => {
+            if (theme.id != 'onedark') {
+
+                monaco.editor.defineTheme(theme.id, theme.theme);
+            }
+        })
     }
 
     return (
@@ -93,11 +90,11 @@ export default function MonacoEditor({ theme }) {
                     lineDecorationsWidth: 16,  // Añade espacio a la izquierda
                     lineNumbersMinChars: 0,    // Minimiza el espacio reservado para números de línea
                     glyphMargin: false,        // Desactiva el margen de glifos
-                    // folding: false,            // Desactiva el plegado de código
-                    /* padding: {
-                        top: 8,
+                    folding: false,            // Desactiva el plegado de código
+                    padding: {
+                        //   top: 8,
                         bottom: 8
-                    } */
+                    }
                 }}
             />
         </>
