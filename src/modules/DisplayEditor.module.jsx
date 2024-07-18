@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import MonacoEditor from './MonacoEditor'
 import ToggleHeaderDisplay from './ToggleHeaderDisplay.module'
 import BtnsDisplayFooter from '@/modules/BtnsDisplayFooter'
-import THEMES from '@/controllers/THEMES'
+import THEMES from '@/consts/THEMES'
 
 export default function DisplayEditormodule() {
 

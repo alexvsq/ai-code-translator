@@ -35,17 +35,22 @@ export async function apiKeyTest(key) {
     try {
         const googleTest = createGoogleGenerativeAI({ apiKey: key });
 
-        const prompt = `this is a test plese give a afirmative answer to check the api key is correct or not`;
+        const prompt = `this is a test plese give a the only one word "correct" to check the api key is correct or not give the word 'error'`;
 
         const { text } = await generateText({
             model: googleTest('models/gemini-1.5-pro-latest'),
             prompt: prompt,
         });
 
-        return text;
+        if (text) {
+            console.log('hola', text);
+            return true
+        }
+
+        return false
 
     } catch (error) {
-        console.log('apiKeyTest err', error);
-        return 'error';
+        console.log('apiKeyTest error', error);
+        return false
     }
 }

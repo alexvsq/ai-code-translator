@@ -1,6 +1,6 @@
 import React from 'react'
 import SelectToggle from '@/components/SelectToggle'
-import LANGUAGES from '@/controllers/LANGUAGES'
+import LANGUAGES from '@/utils/LANGUAGES'
 import { useTranslatorAi } from '@/context/context'
 
 export default function ToggleHeaderDisplay() {

@@ -1,26 +1,29 @@
 'use client'
 import React, { useEffect } from 'react'
-import LANGUAGES from '@/controllers/LANGUAGES'
+import LANGUAGES from '@/utils/LANGUAGES'
 import BtnLang from '@/components/BtnLang'
 import { useTranslatorAi } from '@/context/context'
-import { apiResponseAiStream } from '@/connect/connect'
-import { getApiKeyFromStorage } from '@/functions/functions'
+import { apiResponseAiStream } from '@/api/connect'
 
 export default function FooterLanguagesSelectmodule() {
-    const { languageValue, codeContent, setCodeContent, setLanguageValue, setApiKeyPass } = useTranslatorAi()
+    const { languageValue, codeContent, setCodeContent, setLanguageValue, apiKey, loading, setLoading } = useTranslatorAi()
 
-    async function generateCode(lang) {
+    async function generateTranslationAi(lang) {
+        if (apiKey == '' || loading) return
+
+        setLoading(true)
         try {
-            const apiKey = getApiKeyFromStorage()
             let response = await apiResponseAiStream(apiKey, languageValue, lang, codeContent)
             setCodeContent('')
             setLanguageValue(lang)
             for await (const chunk of response) {
                 setCodeContent(prev => prev + chunk)
             }
+            setLoading(false)
         } catch (error) {
-            setApiKeyPass(false)
-            console.log('generateCode', error)
+            setLoading(false)
+            console.log('generateTranslationAi', error)
+            alert('Error: Invalid API key')
         }
     }
 
@@ -30,7 +33,7 @@ export default function FooterLanguagesSelectmodule() {
             <aside className=' my-4 flex flex-wrap gap-2 justify-center'>
                 {
                     LANGUAGES.map(lang => {
-                        return <BtnLang key={lang.id + 'btnsFooter'} title={lang.name} pressBtn={() => generateCode(lang.id)} />
+                        return <BtnLang key={lang.id + 'btnsFooter'} title={lang.name} pressBtn={() => generateTranslationAi(lang.id)} />
                     })
                 }
             </aside>
