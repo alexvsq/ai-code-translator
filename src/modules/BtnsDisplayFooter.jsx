@@ -1,6 +1,6 @@
 'use client'
 import SelectToggle from '@/components/SelectToggle'
-import THEMES from '@/consts/THEMES'
+import THEMES from '@/utils/THEMES'
 import { useTranslatorAi } from '@/context/context'
 import LoandingImg from '@/components/loandingImg'
 
