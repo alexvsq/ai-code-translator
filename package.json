@@ -9,9 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^0.0.27",
+    "@monaco-editor/react": "^4.6.0",
+    "ai": "^3.2.22",
+    "monaco-themes": "^0.4.4",
+    "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "react-monaco-editor": "^0.55.0"
   },
   "devDependencies": {
     "postcss": "^8",
