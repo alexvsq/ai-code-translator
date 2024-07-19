@@ -5,11 +5,7 @@
 
 
 body {
-  @apply text-black;
-  background: linear-gradient(to bottom,
-      top,
-      #FFF,
-      #F9F9F9),
+  @apply text-blackIA;
 }
 
 .imgIaLogo {

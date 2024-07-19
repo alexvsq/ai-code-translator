@@ -4,9 +4,11 @@ import MonacoEditor from './MonacoEditor'
 import ToggleHeaderDisplay from './ToggleHeaderDisplay.module'
 import BtnsDisplayFooter from '@/modules/BtnsDisplayFooter'
 import THEMES from '@/utils/THEMES'
+import { useTranslatorAi } from '@/context/context'
 
 export default function DisplayEditormodule() {
 
+    const { bgWeb, setBgWeb } = useTranslatorAi()
     const [themeValue, setThemeValue] = useState('onedark')
     const [colorBg, setColorBg] = useState('#0e0e0f')
 
@@ -16,8 +18,10 @@ export default function DisplayEditormodule() {
 
     useEffect(() => {
         try {
-            const newColor = THEMES.find(theme => theme.id === themeValue).backgroundColor
-            setColorBg(newColor)
+            const theme = THEMES.find(theme => theme.id === themeValue)
+            setColorBg(theme.backgroundColor)
+            setBgWeb(theme.backgroundColorWeb)
+            //  setBgWeb(theme.backgroundGradient)
         } catch (error) {
             console.log(error)
         }

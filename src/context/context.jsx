@@ -13,6 +13,7 @@ function TranslatorProvider({ children }) {
     const [languageValue, setLanguageValue] = useState('javascript')
     const [apiKey, setApiKey] = useState('')
     const [loading, setLoading] = useState(false)
+    const [bgWeb, setBgWeb] = useState('#Fafafa')
 
     async function validateApiInput() {
         setLoading(true)
@@ -38,14 +39,17 @@ function TranslatorProvider({ children }) {
         }
     }, [apiKey])
 
-    useEffect(() => {
-
-    }, [])
-
-    const value = { codeContent, setCodeContent, languageValue, setLanguageValue, apiKey, setApiKey, loading, setLoading, validateApiInput };
+    const valuesContext = {
+        codeContent, setCodeContent,
+        languageValue, setLanguageValue,
+        apiKey, setApiKey,
+        loading, setLoading,
+        bgWeb, setBgWeb,
+        validateApiInput
+    };
 
     return (
-        <TranslatorContext.Provider value={value}>
+        <TranslatorContext.Provider value={valuesContext}>
             {children}
         </TranslatorContext.Provider>
     );

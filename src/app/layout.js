@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Title from "@/components/Title";
 import { TranslatorProvider } from '@/context/context'
+import BgColorModule from "@/modules/bgColor.module";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,8 +18,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={poppins.className}>
         <TranslatorProvider>
-          <Title />
-          {children}
+
+          <BgColorModule>
+            {children}
+          </BgColorModule>
+
         </TranslatorProvider>
       </body>
     </html>
