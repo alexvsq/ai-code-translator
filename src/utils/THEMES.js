@@ -5,7 +5,7 @@ import TomorrowNight from 'monaco-themes/themes/Tomorrow-Night.json'
 import NightOwl from 'monaco-themes/themes/Night Owl.json'
 import BlackBoard from 'monaco-themes/themes/Blackboard.json'
 import Cobalt from 'monaco-themes/themes/Cobalt.json'
-import GithubDark from 'monaco-themes/themes/Github Dark.json'
+import GithubDark from 'monaco-themes/themes/GitHub Dark.json'
 
 const themes = [
     {
