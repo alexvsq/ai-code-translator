@@ -3,17 +3,23 @@ import React, { useEffect } from 'react'
 import LANGUAGES from '@/utils/LANGUAGES'
 import BtnLang from '@/components/BtnLang'
 import { useTranslatorAi } from '@/context/context'
-import { apiResponseAiStream } from '@/api/connect'
+import { apiResponseAiStream } from '@/api/connectGemini'
+import { apiResponseAiStreamOpenAi } from '@/api/connectOpenAi'
 
 export default function FooterLanguagesSelectmodule() {
-    const { languageValue, codeContent, setCodeContent, setLanguageValue, apiKey, loading, setLoading } = useTranslatorAi()
+    const { languageValue, codeContent, setCodeContent, setLanguageValue, apiKey, loading, setLoading, AI } = useTranslatorAi()
 
     async function generateTranslationAi(lang) {
         if (apiKey == '' || loading) return
 
         setLoading(true)
         try {
-            let response = await apiResponseAiStream(apiKey, languageValue, lang, codeContent)
+            let response
+            if (AI == 'gemini') {
+                response = await apiResponseAiStream(apiKey, languageValue, lang, codeContent)
+            } else if (AI == 'gpt') {
+                response = await apiResponseAiStreamOpenAi(apiKey, languageValue, lang, codeContent)
+            }
             setCodeContent('')
             setLanguageValue(lang)
             for await (const chunk of response) {

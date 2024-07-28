@@ -15,6 +15,13 @@ const themes = [
         backgroundColor: '#0e0e0f',
         backgroundColorWeb: '#fff',
         backgroundGradient: 'linear-gradient(315deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%)'
+    }, {
+        id: 'githubDark',
+        name: 'Github Dark',
+        theme: GithubDark,
+        backgroundColor: '#24292e',
+        backgroundColorWeb: '#353535',
+        backgroundGradient: 'linear-gradient(315deg, rgba(5,116,163,1) 0%, rgba(9,167,235,1) 100%)'
     },
     {
         id: 'nightOwl',
@@ -68,13 +75,6 @@ const themes = [
         theme: Cobalt,
         backgroundColor: '#002240',
         backgroundColorWeb: '#4c2a9e',
-        backgroundGradient: 'linear-gradient(315deg, rgba(5,116,163,1) 0%, rgba(9,167,235,1) 100%)'
-    }, {
-        id: 'githubDark',
-        name: 'Github Dark',
-        theme: GithubDark,
-        backgroundColor: '#24292e',
-        backgroundColorWeb: '#353535',
         backgroundGradient: 'linear-gradient(315deg, rgba(5,116,163,1) 0%, rgba(9,167,235,1) 100%)'
     }
 ]

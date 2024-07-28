@@ -43,7 +43,7 @@ export async function apiKeyTest(key) {
         });
 
         if (text) {
-            console.log('hola', text);
+            console.log('gemini', text);
             return true
         }
 

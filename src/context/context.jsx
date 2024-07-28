@@ -2,7 +2,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import SNIPPETS from '@/utils/SNIPPETS';
 import { TextInputApiKey } from '@/utils/TEXTS'
-import { apiKeyTest } from '@/api/connect'
+import { apiKeyTest } from '@/api/connectGemini'
+import { apiKeyTestOpenAi } from '@/api/connectOpenAi'
 
 const TranslatorContext = createContext();
 
@@ -14,11 +15,20 @@ function TranslatorProvider({ children }) {
     const [apiKey, setApiKey] = useState('')
     const [loading, setLoading] = useState(false)
     const [bgWeb, setBgWeb] = useState('#Fafafa')
+    const [AI, setAi] = useState('gpt')
 
     async function validateApiInput() {
         setLoading(true)
         const apiInput = codeContent.replace(TextInputApiKey, '')
-        const test = await apiKeyTest(apiInput)
+        let test
+        if (AI == 'gemini') {
+            test = await apiKeyTest(apiInput)
+            setAi('gemini')
+        } else if (AI == 'gpt') {
+            test = await apiKeyTestOpenAi(apiInput)
+            setAi('gpt')
+        }
+
         if (test) {
             console.log('test', test);
             setLoading(false)
@@ -45,6 +55,7 @@ function TranslatorProvider({ children }) {
         apiKey, setApiKey,
         loading, setLoading,
         bgWeb, setBgWeb,
+        AI, setAi,
         validateApiInput
     };
 
