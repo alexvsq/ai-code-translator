@@ -28,7 +28,7 @@ export default function FooterLanguagesSelectmodule() {
     }
 
     return (
-        <footer className='mt-7'>
+        <footer className='mt-7 filter-img'>
             <h3 className='my-4 text-[18px] font-semibold text-center'>Press one Language to Translate</h3>
             <aside className=' my-4 flex flex-wrap gap-2 justify-center'>
                 {

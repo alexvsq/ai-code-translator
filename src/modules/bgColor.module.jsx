@@ -8,7 +8,7 @@ export default function BgColorModule({ children }) {
 
 
     return (
-        <div style={{ backgroundColor: bgWeb }} className="min-h-screen transition duration-200">
+        <div id="monaco-editor-container" style={{ backgroundColor: bgWeb }} className="min-h-screen transition duration-200">
             {children}
         </div>
     )

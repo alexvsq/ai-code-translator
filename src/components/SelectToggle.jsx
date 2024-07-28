@@ -6,7 +6,7 @@ export default function SelectToggle({ data = [], value = '', handleChange = () 
         <select
             value={value}
             onChange={(e) => handleChange(e)}
-            className='bg-grayIA outline-none px-2 shadow-lg rounded-[5px]'>
+            className='bg-grayIA outline-none px-2 shadow-lg rounded-[5px] filter-img'>
 
             {
                 data.map((row, i) => {

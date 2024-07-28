@@ -29,7 +29,7 @@ export default function DisplayEditormodule() {
     }, [themeValue])
 
     return (
-        <>
+        <div >
             <div
                 style={{ backgroundColor: colorBg }}
                 //style={{ backgroundColor: '#000000' }}
@@ -40,6 +40,6 @@ export default function DisplayEditormodule() {
                 <MonacoEditor theme={themeValue} />
             </div>
             <BtnsDisplayFooter getTheme={returnTheme} value={themeValue} />
-        </>
+        </div>
     )
 }
