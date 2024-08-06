@@ -34,7 +34,12 @@ export default function DisplayEditormodule() {
                 style={{ backgroundColor: colorBg }}
                 //style={{ backgroundColor: '#000000' }}
                 className="rounded-xl h-[400px] bg-blackIA shadow-lg overflow-hidden">
-                <header className="flex m-3 mb-0 items-center justify-end">
+                <header className="flex m-3 mb-1 items-center justify-between">
+                    <aside className='flex ml-1 gap-2'>
+                        <div className='h-[10px] aspect-square bg-[#ff5e56] rounded-full'></div>
+                        <div className='h-[10px] aspect-square bg-[#febc29] rounded-full'></div>
+                        <div className='h-[10px] aspect-square bg-[#26c83e] rounded-full'></div>
+                    </aside>
                     <ToggleHeaderDisplay />
                 </header>
                 <MonacoEditor theme={themeValue} />
