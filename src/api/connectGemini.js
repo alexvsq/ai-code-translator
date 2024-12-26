@@ -1,10 +1,10 @@
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { streamText, generateText } from 'ai';
+import { generateText } from 'ai';
 
-export async function apiResponseAiStream(apiKey, LangIn, langOut, codeInput) {
+export async function apiResponseAiGemini(apiKey, LangIn, langOut, codeInput) {
     try {
         const google = createGoogleGenerativeAI({
-            apiKey: apiKey
+            apiKey: apiKey,
         });
         const prompt = `Translate the following ${LangIn} code to ${langOut}. 
         Rules:
@@ -18,12 +18,12 @@ export async function apiResponseAiStream(apiKey, LangIn, langOut, codeInput) {
 
         Here's the code to translate: ${codeInput}`
 
-        const { textStream } = await streamText({
+        const text = await generateText({
             model: google('models/gemini-1.5-pro-latest'),
             prompt: prompt,
         });
 
-        return textStream;
+        return text;
 
     } catch (error) {
         console.log('apiResponse err', error);

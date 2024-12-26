@@ -2,7 +2,7 @@ import { createOpenAI } from '@ai-sdk/openai';
 import { streamText, generateText } from 'ai';
 
 
-export async function apiResponseAiStreamOpenAi(apiKey, LangIn, langOut, codeInput) {
+export async function apiResponseAiOpenAi(apiKey, LangIn, langOut, codeInput) {
     try {
         const openai = createOpenAI({
             apiKey: apiKey
@@ -19,12 +19,12 @@ export async function apiResponseAiStreamOpenAi(apiKey, LangIn, langOut, codeInp
 
         Here's the code to translate: ${codeInput}`
 
-        const { textStream } = await streamText({
+        const textResponse = await generateText({
             model: openai('gpt-4o-mini'),
             prompt: prompt,
         });
 
-        return textStream;
+        return textResponse;
 
     } catch (error) {
         console.log('apiResponse err', error);

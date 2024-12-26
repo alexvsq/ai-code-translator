@@ -1,10 +1,10 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import LANGUAGES from '@/utils/LANGUAGES'
 import BtnLang from '@/components/BtnLang'
 import { useTranslatorAi } from '@/context/context'
-import { apiResponseAiStream } from '@/api/connectGemini'
-import { apiResponseAiStreamOpenAi } from '@/api/connectOpenAi'
+import { apiResponseAiGemini } from '@/api/connectGemini'
+import { apiResponseAiOpenAi } from '@/api/connectOpenAi'
 
 export default function FooterLanguagesSelectmodule() {
     const { languageValue, codeContent, setCodeContent, setLanguageValue, apiKey, loading, setLoading, AI } = useTranslatorAi()
@@ -16,14 +16,15 @@ export default function FooterLanguagesSelectmodule() {
         try {
             let response
             if (AI == 'gemini') {
-                response = await apiResponseAiStream(apiKey, languageValue, lang, codeContent)
+                response = await apiResponseAiGemini(apiKey, languageValue, lang, codeContent)
             } else if (AI == 'gpt') {
-                response = await apiResponseAiStreamOpenAi(apiKey, languageValue, lang, codeContent)
+                response = await apiResponseAiOpenAi(apiKey, languageValue, lang, codeContent)
             }
             setCodeContent('')
             setLanguageValue(lang)
-            for await (const chunk of response) {
-                setCodeContent(prev => prev + chunk)
+
+            if (response) {
+                setCodeContent(response.text)
             }
             setLoading(false)
         } catch (error) {
